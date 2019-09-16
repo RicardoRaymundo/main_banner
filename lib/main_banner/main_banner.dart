@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:main_banner/pages_placeholder.dart';
-import 'package:main_banner/ui/ui_styles.dart';
+import 'package:main_banner/main_banner/ui/main_banner_ui_styles.dart';
 
 /// Esta classe constrói um widget que recebe uma imagem principal e um logo SVG como
 /// parâmetros de entrada. O widgets é um banner com contém uma linha de botões
@@ -16,13 +16,13 @@ class MainBanner extends StatelessWidget {
   Widget build(BuildContext context) {
 
     /// Constantes que são os títulos dos botões do MainBanner
-    const String topButtonTitleFirst = 'Cursos';
-    const String topButtonTitleSecond = 'Aulas';
-    const String topButtonTitleThird = 'Minha Lista';
-    const String bottomButtonTitleLeft1 = 'Minha';
-    const String bottomButtonTitleLeft2 = 'Lista';
-    const String bottomButtonTitleCenter = 'Assistir';
-    const String bottomButtonTitleRight = 'Info';
+    const String titleCourses = 'Cursos';
+    const String titleClasses = 'Aulas';
+    const String titleMyList = 'Minha Lista';
+    const String titleMyListFirst = 'Minha';
+    const String titleMyListSecond = 'Lista';
+    const String titleWatch = 'Assistir';
+    const String titleInfo = 'Info';
 
     /// Variável de altura do MainBanner
     const double mainBannerHeight = 550;
@@ -99,7 +99,7 @@ class MainBanner extends StatelessWidget {
                       },
                       child: Container(
                           child:
-                              Text(topButtonTitleFirst, style: Styles.title)),
+                              Text(titleCourses, style: MainBannerUiStyles.title)),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -111,7 +111,7 @@ class MainBanner extends StatelessWidget {
                       },
                       child: Container(
                           child:
-                              Text(topButtonTitleSecond, style: Styles.title)),
+                              Text(titleClasses, style: MainBannerUiStyles.title)),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -123,7 +123,7 @@ class MainBanner extends StatelessWidget {
                       },
                       child: Container(
                           child:
-                              Text(topButtonTitleThird, style: Styles.title)),
+                              Text(titleMyList, style: MainBannerUiStyles.title)),
                     ),
                   ],
                 ),
@@ -132,10 +132,10 @@ class MainBanner extends StatelessWidget {
               /// Botões da parte inferior do widget
               mainBannerButton(
                 context,
-                bottomButtonTitleLeft1,
-                bottomButtonTitleLeft2,
-                bottomButtonTitleCenter,
-                bottomButtonTitleRight,
+                titleMyListFirst,
+                titleMyListSecond,
+                titleWatch,
+                titleInfo,
               ),
             ],
           ),
