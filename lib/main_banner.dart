@@ -14,16 +14,30 @@ class MainBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    /// Constantes que são os títulos dos botões do MainBanner
+    const String topButtonTitleFirst = 'Cursos';
+    const String topButtonTitleSecond = 'Aulas';
+    const String topButtonTitleThird = 'Minha Lista';
+    const String bottomButtonTitleLeft1 = 'Minha';
+    const String bottomButtonTitleLeft2 = 'Lista';
+    const String bottomButtonTitleCenter = 'Assistir';
+    const String bottomButtonTitleRight = 'Info';
+
+    /// Variável de altura do MainBanner
+    const double mainBannerHeight = 550;
+
     final witchLogo = SvgPicture.asset(
       this.svgLogoPath,
       semanticsLabel: 'Feed button',
+      color: Colors.white,
       placeholderBuilder: (context) => Icon(Icons.error),
     );
 
     return Stack(
       children: <Widget>[
         Container(
-          height: 550,
+          height: mainBannerHeight,
           // color: Colors.blue,
           decoration: new BoxDecoration(
             color: Colors.transparent,
@@ -33,10 +47,11 @@ class MainBanner extends StatelessWidget {
                 image: new AssetImage(this.mainImagePath),
                 fit: BoxFit.fill),
           ),
-          // we can change to be backgroundimage instead
         ),
+
+        /// Container que irá sobrepor a imagem, aplicando um efeito de filtro gradiente
         Container(
-          height: 550,
+          height: mainBannerHeight,
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -49,8 +64,11 @@ class MainBanner extends StatelessWidget {
                 ),
           ),
         ),
+
+        /// Por ultimo na Stack, é este Container contém o logo e os botões
+        /// de cima de de baixo
         Container(
-          height: 550,
+          height: mainBannerHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -74,33 +92,51 @@ class MainBanner extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         //Inicializa a tab cursos
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => PagesPlaceholder()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PagesPlaceholder()));
                       },
-                      child: Text('Cursos', style: Styles.title),
+                      child: Container(
+                          child:
+                              Text(topButtonTitleFirst, style: Styles.title)),
                     ),
                     GestureDetector(
                       onTap: () {
                         //Inicializa a tab aulas
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => PagesPlaceholder()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PagesPlaceholder()));
                       },
-                      child: Text('Aulas', style: Styles.title),
+                      child: Container(
+                          child:
+                              Text(topButtonTitleSecond, style: Styles.title)),
                     ),
                     GestureDetector(
                       onTap: () {
                         //Inicializa a tab minha lista
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => PagesPlaceholder()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PagesPlaceholder()));
                       },
-                      child: Text('Minha Lista', style: Styles.title),
+                      child: Container(
+                          child:
+                              Text(topButtonTitleThird, style: Styles.title)),
                     ),
                   ],
                 ),
               ),
 
               /// Botões da parte inferior do widget
-              mainBannerButton(context),
+              mainBannerButton(
+                context,
+                bottomButtonTitleLeft1,
+                bottomButtonTitleLeft2,
+                bottomButtonTitleCenter,
+                bottomButtonTitleRight,
+              ),
             ],
           ),
         )
@@ -109,7 +145,8 @@ class MainBanner extends StatelessWidget {
   }
 
   /// Método que cria a linha inferior de botões
-  Widget mainBannerButton(BuildContext context) {
+  Widget mainBannerButton(
+      BuildContext context, titleLeft1, titleLeft2, titleCenter, titleRight) {
     final TextStyle buttonInfoStyle = new TextStyle(
         fontFamily: 'Avenir next',
         fontSize: 12,
@@ -127,18 +164,20 @@ class MainBanner extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => PagesPlaceholder()));
             },
-            child: Column(
-              children: <Widget>[
-                Icon(Icons.add, color: Colors.white, size: 23),
-                Text(
-                  'Minha',
-                  style: buttonInfoStyle,
-                ),
-                Text(
-                  'Lista',
-                  style: buttonInfoStyle,
-                )
-              ],
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Icon(Icons.add, color: Colors.white, size: 23),
+                  Text(
+                    titleLeft1,
+                    style: buttonInfoStyle,
+                  ),
+                  Text(
+                    titleLeft2,
+                    style: buttonInfoStyle,
+                  )
+                ],
+              ),
             ),
           ),
 
@@ -154,14 +193,16 @@ class MainBanner extends StatelessWidget {
                     color: Colors.black,
                   ),
                   Text(
-                    "Assistir",
+                    titleCenter,
                     style: TextStyle(color: Colors.black),
                   )
                 ],
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PagesPlaceholder()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PagesPlaceholder()));
               },
             ),
           ),
@@ -172,21 +213,23 @@ class MainBanner extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => PagesPlaceholder()));
             },
-            child: Column(
-              children: <Widget>[
-                Icon(
-                  Icons.info,
-                  color: Colors.white,
-                  size: 23,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Info',
-                  style: buttonInfoStyle,
-                )
-              ],
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.info,
+                    color: Colors.white,
+                    size: 23,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    titleRight,
+                    style: buttonInfoStyle,
+                  )
+                ],
+              ),
             ),
           ),
         ],
